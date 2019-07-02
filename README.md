@@ -19,5 +19,5 @@ go get github.com/aidarkhanov/nanoid
 
 ## Thanks to
 
-* Andrey Sitnik for [the original JavaScript algorithm](https://github.com/ai/nanoid) implementation.
+* [Andrey Sitnik](https://github.com/ai) for [the original JavaScript algorithm](https://github.com/ai/nanoid) implementation.
 * [Paul Yuan](https://github.com/puyuan) for allowing me to improve [the Python version](https://github.com/puyuan/py-nanoid) of the library. Without the previous work, I would not be able to fully understand the algorithm.
