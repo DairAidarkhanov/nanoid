@@ -39,7 +39,7 @@ func Format(random BytesGenerator, alphabet string, size int) (string, error) {
 	for {
 		randomBytes, err := random(step)
 		if err != nil {
-			return "", nil
+			return "", err
 		}
 
 		for i := 0; i < step; i++ {
@@ -61,7 +61,7 @@ func Format(random BytesGenerator, alphabet string, size int) (string, error) {
 func Generate(alphabet string, size int) (string, error) {
 	id, err := Format(random, alphabet, size)
 	if err != nil {
-		return "", nil
+		return "", err
 	}
 	return id, nil
 }
