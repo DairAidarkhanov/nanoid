@@ -1,6 +1,6 @@
 # Nano ID
 
-[![GoDoc](https://godoc.org/github.com/aidarkhanov/nanoid?status.svg)](https://godoc.org/github.com/aidarkhanov/nanoid) [![License](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/aidarkhanov/nanoid/master/LICENSE) [![Coverage](http://gocover.io/_badge/github.com/aidarkhanov/nanoid)](http://gocover.io/github.com/aidarkhanov/nanoid)
+[![GoDoc](https://godoc.org/github.com/aidarkhanov/nanoid?status.svg)](https://godoc.org/github.com/aidarkhanov/nanoid) [![License](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/aidarkhanov/nanoid/master/LICENSE) [![Coverage](http://gocover.io/_badge/github.com/aidarkhanov/nanoid)](http://gocover.io/github.com/aidarkhanov/nanoid) [![Go Report Card](https://goreportcard.com/badge/github.com/aidarkhanov/nanoid)](https://goreportcard.com/report/github.com/aidarkhanov/nanoid)
 
 A tiny, fast and convenient _Go_ unique string ID generator.
 
