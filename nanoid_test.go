@@ -1,15 +1,17 @@
-package nanoid
+package nanoid_test
 
 import (
 	"math"
 	"strings"
 	"testing"
+
+	"github.com/aidarkhanov/nanoid"
 )
 
 func TestGeneratesURLFriendlyIDs(t *testing.T) {
 	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
 	for i := 0; i < 100; i++ {
-		id := New()
+		id := nanoid.New()
 		for j := 0; j < len(id); j++ {
 			if !strings.Contains(alphabet, string(id[j])) {
 				t.Errorf("ID does contain not URL-friendly char: %v", string(id[j]))
@@ -20,7 +22,7 @@ func TestGeneratesURLFriendlyIDs(t *testing.T) {
 
 func TestChangesIDLength(t *testing.T) {
 	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
-	id := MustGenerate(alphabet, 10)
+	id := nanoid.MustGenerate(alphabet, 10)
 	if len(id) != 10 {
 		t.Errorf("Expected ID length to be %v, got %v", 10, len(id))
 	}
@@ -30,7 +32,7 @@ func TestHasNoCollisions(t *testing.T) {
 	count := 100 * 1000
 	used := make(map[string]bool)
 	for i := 0; i < count; i++ {
-		id := New()
+		id := nanoid.New()
 		if v, ok := used[id]; ok {
 			t.Errorf("Repeated ID has been generated: %v", v)
 		}
@@ -44,7 +46,7 @@ func TestHasFlatDistribution(t *testing.T) {
 
 	chars := make(map[string]int)
 	for i := 0; i < count; i++ {
-		id := MustGenerate(alphabet, size)
+		id := nanoid.MustGenerate(alphabet, size)
 		for j := 0; j < len(id); j++ {
 			char := string(id[j])
 			if _, ok := chars[char]; !ok {
@@ -75,7 +77,7 @@ func TestHasFlatDistribution(t *testing.T) {
 }
 
 func TestHasOptions(t *testing.T) {
-	id := MustGenerate("a", 5)
+	id := nanoid.MustGenerate("a", 5)
 	target := "aaaaa"
 	if id != target {
 		t.Errorf("Expected %v, got %v", target, id)
@@ -92,7 +94,7 @@ func TestGeneratesRandomString(t *testing.T) {
 		return buffer, nil
 	}
 
-	id := MustFormat(random, "abcde", 4)
+	id := nanoid.MustFormat(random, "abcde", 4)
 	target := "cdac"
 	if id != target {
 		t.Errorf("Expected %v, got %v", target, id)
