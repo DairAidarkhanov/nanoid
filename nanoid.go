@@ -66,7 +66,7 @@ func Generate(alphabet string, size int) (string, error) {
 	return id, nil
 }
 
-// Must returns a random string if err is nil and panics
+// Must returns a random string if err is nil or panics
 // otherwise.
 func Must(id string, err error) string {
 	if err != nil {
