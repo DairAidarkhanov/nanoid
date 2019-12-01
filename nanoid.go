@@ -1,15 +1,16 @@
 // Package nanoid provides fast and convenient unique
-// string ID generator.
+// string generator.
 package nanoid
 
 import (
 	"crypto/rand"
 	"math"
+	"math/bits"
 	"strings"
 )
 
 const (
-	alphabet = "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet = "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	size     = 21
 )
 
@@ -28,10 +29,7 @@ func random(step int) ([]byte, error) {
 // Format generates a random string with the passed in
 // bytes generator.
 func Format(random BytesGenerator, alphabet string, size int) (string, error) {
-	mask := 1
-	if len(alphabet) > 1 {
-		mask = 2<<uint(math.Log(float64(len(alphabet)-1))/math.Ln2) - 1
-	}
+	mask := 2<<(31-bits.LeadingZeros32(uint32((len(alphabet)-1)|1))) - 1
 	step := int(math.Ceil(1.6 * float64(mask*size) / float64(len(alphabet))))
 
 	var id strings.Builder
