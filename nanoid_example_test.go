@@ -8,7 +8,7 @@ import (
 )
 
 func ExampleFormat() {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	size := 21
 
 	// randomBytesGenerator returns random bytes buffer
@@ -30,7 +30,7 @@ func ExampleFormat() {
 }
 
 func ExampleGenerate() {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	size := 21
 
 	id, err := nanoid.Generate(alphabet, size)
@@ -42,7 +42,7 @@ func ExampleGenerate() {
 }
 
 func ExampleMustFormat() {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	size := 21
 
 	// randomBytesGenerator returns random bytes buffer
@@ -61,7 +61,7 @@ func ExampleMustFormat() {
 }
 
 func ExampleMustGenerate() {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	size := 21
 
 	id := nanoid.MustGenerate(alphabet, size)

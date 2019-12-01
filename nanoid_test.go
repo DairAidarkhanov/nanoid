@@ -9,7 +9,7 @@ import (
 )
 
 func TestGeneratesURLFriendlyIDs(t *testing.T) {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	for i := 0; i < 100; i++ {
 		id := nanoid.New()
 		for j := 0; j < len(id); j++ {
@@ -21,7 +21,7 @@ func TestGeneratesURLFriendlyIDs(t *testing.T) {
 }
 
 func TestChangesIDLength(t *testing.T) {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	id := nanoid.MustGenerate(alphabet, 10)
 	if len(id) != 10 {
 		t.Errorf("Expected ID length to be %v, got %v", 10, len(id))
