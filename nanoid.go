@@ -29,7 +29,7 @@ func random(step int) ([]byte, error) {
 // Format generates a random string with the passed in
 // bytes generator.
 func Format(random BytesGenerator, alphabet string, size int) (string, error) {
-	mask := 2<<(31-bits.LeadingZeros32(uint32((len(alphabet)-1)|1))) - 1
+	mask := 2<<uint32(31-bits.LeadingZeros32(uint32((len(alphabet)-1)|1))) - 1
 	step := int(math.Ceil(1.6 * float64(mask*size) / float64(len(alphabet))))
 
 	var id strings.Builder
