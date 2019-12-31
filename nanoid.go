@@ -14,11 +14,10 @@ const (
 	size     = 21
 )
 
-// BytesGenerator represents calculated random bytes
-// buffer.
+// BytesGenerator represents random bytes buffer.
 type BytesGenerator func(step int) ([]byte, error)
 
-func random(step int) ([]byte, error) {
+func generateRandomBuffer(step int) ([]byte, error) {
 	buffer := make([]byte, step)
 	if _, err := rand.Read(buffer); err != nil {
 		return nil, err
@@ -26,28 +25,28 @@ func random(step int) ([]byte, error) {
 	return buffer, nil
 }
 
-// Format generates a random string with the passed in
-// bytes generator.
-func Format(random BytesGenerator, alphabet string, size int) (string, error) {
-	mask := 2<<uint32(31-bits.LeadingZeros32(uint32((len(alphabet)-1)|1))) - 1
+// FormatString generates a random string based on
+// BytesGenerator, alphabet and size.
+func FormatString(generateRandomBuffer BytesGenerator, alphabet string, size int) (string, error) {
+	mask := 2<<uint32(31-bits.LeadingZeros32(uint32(len(alphabet)-1|1))) - 1
 	step := int(math.Ceil(1.6 * float64(mask*size) / float64(len(alphabet))))
 
-	var id strings.Builder
+	id := new(strings.Builder)
 	id.Grow(size)
+
 	for {
-		randomBytes, err := random(step)
+		randomBuffer, err := generateRandomBuffer(step)
 		if err != nil {
 			return "", err
 		}
 
 		for i := 0; i < step; i++ {
-			currentByte := int(randomBytes[i]) & mask
+			currentIndex := int(randomBuffer[i]) & mask
 
-			if currentByte < len(alphabet) {
-				if err := id.WriteByte(alphabet[currentByte]); err != nil {
+			if currentIndex < len(alphabet) {
+				if err := id.WriteByte(alphabet[currentIndex]); err != nil {
 					return "", err
-				}
-				if id.Len() == size {
+				} else if id.Len() == size {
 					return id.String(), nil
 				}
 			}
@@ -55,38 +54,21 @@ func Format(random BytesGenerator, alphabet string, size int) (string, error) {
 	}
 }
 
-// Generate generates a random string.
-func Generate(alphabet string, size int) (string, error) {
-	id, err := Format(random, alphabet, size)
+// GenerateString generates a random string based on
+// alphabet and size.
+func GenerateString(alphabet string, size int) (string, error) {
+	id, err := FormatString(generateRandomBuffer, alphabet, size)
 	if err != nil {
 		return "", err
 	}
 	return id, nil
 }
 
-// Must returns a random string if err is nil or panics
-// otherwise.
-func Must(id string, err error) string {
+// New generates a random string.
+func New() (string, error) {
+	id, err := FormatString(generateRandomBuffer, alphabet, size)
 	if err != nil {
-		panic(err)
+		return "", err
 	}
-	return id
-}
-
-// MustFormat is like Format but panics if a random string
-// cannot be generated.
-func MustFormat(random BytesGenerator, alphabet string, size int) string {
-	return Must(Format(random, alphabet, size))
-}
-
-// MustGenerate is like Generate but panics if a random
-// string cannot be generated.
-func MustGenerate(alphabet string, size int) string {
-	return Must(Generate(alphabet, size))
-}
-
-// New generates a random string based on default alphabet
-// and size.
-func New() string {
-	return Must(Generate(alphabet, size))
+	return id, nil
 }

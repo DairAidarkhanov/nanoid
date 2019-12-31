@@ -9,9 +9,12 @@ import (
 )
 
 func TestGeneratesURLFriendlyIDs(t *testing.T) {
-	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
+	alphabet, size := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW", 21
 	for i := 0; i < 100; i++ {
-		id := nanoid.New()
+		id, err := nanoid.GenerateString(alphabet, size)
+		if err != nil {
+			panic(err)
+		}
 		for j := 0; j < len(id); j++ {
 			if !strings.Contains(alphabet, string(id[j])) {
 				t.Errorf("ID does contain not URL-friendly char: %v", string(id[j]))
@@ -21,8 +24,11 @@ func TestGeneratesURLFriendlyIDs(t *testing.T) {
 }
 
 func TestChangesIDLength(t *testing.T) {
-	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
-	id := nanoid.MustGenerate(alphabet, 10)
+	alphabet, size := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW", 10
+	id, err := nanoid.GenerateString(alphabet, size)
+	if err != nil {
+		panic(err)
+	}
 	if len(id) != 10 {
 		t.Errorf("Expected ID length to be %v, got %v", 10, len(id))
 	}
@@ -32,7 +38,10 @@ func TestHasNoCollisions(t *testing.T) {
 	count := 100 * 1000
 	used := make(map[string]bool)
 	for i := 0; i < count; i++ {
-		id := nanoid.New()
+		id, err := nanoid.New()
+		if err != nil {
+			panic(err)
+		}
 		if v, ok := used[id]; ok {
 			t.Errorf("Repeated ID has been generated: %v", v)
 		}
@@ -46,7 +55,10 @@ func TestHasFlatDistribution(t *testing.T) {
 
 	chars := make(map[string]int)
 	for i := 0; i < count; i++ {
-		id := nanoid.MustGenerate(alphabet, size)
+		id, err := nanoid.GenerateString(alphabet, size)
+		if err != nil {
+			panic(err)
+		}
 		for j := 0; j < len(id); j++ {
 			char := string(id[j])
 			if _, ok := chars[char]; !ok {
@@ -77,7 +89,10 @@ func TestHasFlatDistribution(t *testing.T) {
 }
 
 func TestHasOptions(t *testing.T) {
-	id := nanoid.MustGenerate("a", 5)
+	id, err := nanoid.GenerateString("a", 5)
+	if err != nil {
+		panic(err)
+	}
 	target := "aaaaa"
 	if id != target {
 		t.Errorf("Expected %v, got %v", target, id)
@@ -94,7 +109,10 @@ func TestGeneratesRandomString(t *testing.T) {
 		return buffer, nil
 	}
 
-	id := nanoid.MustFormat(random, "abcde", 4)
+	id, err := nanoid.FormatString(random, "abcde", 4)
+	if err != nil {
+		panic(err)
+	}
 	target := "cdac"
 	if id != target {
 		t.Errorf("Expected %v, got %v", target, id)
