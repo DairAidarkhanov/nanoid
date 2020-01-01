@@ -6,6 +6,6 @@
 * Changed `Format` to `FormatString` and `Generate` to `GenerateString`.
 * Updated code documentation.
 
-# 1.0.3
+## 1.0.3
 
 * Fixed issue #1 related to breaking change introduced in Go 1.13.
