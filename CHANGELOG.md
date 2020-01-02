@@ -1,5 +1,9 @@
 # Nano ID changelog
 
+## 2.0.1
+
+* Made minor changes to the changelog.
+
 ## 2.0.0
 
 * Removed `Must`, `MustFormat`, `MustGenerate` functions.
