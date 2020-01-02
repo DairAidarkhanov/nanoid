@@ -9,7 +9,8 @@ import (
 )
 
 func ExampleFormatString() {
-	alphabet, size := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW", 21
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
+	size := 21
 
 	// generateBytesBuffer returns random bytes buffer
 	generateBytesBuffer := func(step int) ([]byte, error) {
