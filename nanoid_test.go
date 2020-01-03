@@ -9,7 +9,8 @@ import (
 )
 
 func TestGeneratesURLFriendlyIDs(t *testing.T) {
-	alphabet, size := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW", 21
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
+	size := 21
 	for i := 0; i < 100; i++ {
 		id, err := nanoid.GenerateString(alphabet, size)
 		if err != nil {
@@ -24,7 +25,8 @@ func TestGeneratesURLFriendlyIDs(t *testing.T) {
 }
 
 func TestChangesIDLength(t *testing.T) {
-	alphabet, size := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW", 10
+	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
+	size := 10
 	id, err := nanoid.GenerateString(alphabet, size)
 	if err != nil {
 		panic(err)
@@ -51,7 +53,8 @@ func TestHasNoCollisions(t *testing.T) {
 
 func TestHasFlatDistribution(t *testing.T) {
 	count := 100 * 1000
-	alphabet, size := "abcdefghijklmnopqrstuvwxyz", 5
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+	size := 5
 
 	chars := make(map[string]int)
 	for i := 0; i < count; i++ {
@@ -101,7 +104,7 @@ func TestHasOptions(t *testing.T) {
 
 func TestGeneratesRandomString(t *testing.T) {
 	sequence := []byte{2, 255, 3, 7, 7, 7, 7, 7, 0, 1}
-	random := func(step int) ([]byte, error) {
+	generateBytesBuffer := func(step int) ([]byte, error) {
 		buffer := make([]byte, 0, step)
 		for i := 0; i < step; i += len(sequence) {
 			buffer = append(buffer, sequence[:step-i]...)
@@ -109,7 +112,7 @@ func TestGeneratesRandomString(t *testing.T) {
 		return buffer, nil
 	}
 
-	id, err := nanoid.FormatString(random, "abcde", 4)
+	id, err := nanoid.FormatString(generateBytesBuffer, "abcde", 4)
 	if err != nil {
 		panic(err)
 	}
