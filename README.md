@@ -6,7 +6,10 @@
 * __Compact__. It uses a larger alphabet than UUID `(A-Za-z0-9_-)`. So ID size was reduced from 36 to 21 symbols.
 
 ```go
-id := nanoid.New() //> "i25_rX9zwDdDn7Sg-ZoaH"
+id, err := nanoid.New() //> "i25_rX9zwDdDn7Sg-ZoaH"
+if err != nil {
+    log.Fatalln(err)
+}
 ```
 
 ### Installation
@@ -23,8 +26,8 @@ The package reference is located at [godoc.org/github.com/aidarkhanov/nanoid](ht
 
 ### Roadmap
 
-* Remove panic handling from the API.
-* Freeze the API in version 2 of the package.
+* The API of this package is frozen.
+* Release patches if necessary.
 
 ### License
 
