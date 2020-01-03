@@ -1,4 +1,4 @@
-# NanoID changelog
+# Nano ID changelog
 
 ## 2.0.0
 
