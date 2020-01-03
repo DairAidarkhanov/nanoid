@@ -25,9 +25,9 @@ func generateRandomBuffer(step int) ([]byte, error) {
 	return buffer, nil
 }
 
-// Format generates a random string based on
+// FormatString generates a random string based on
 // BytesGenerator, alphabet and size.
-func Format(generateRandomBuffer BytesGenerator, alphabet string, size int) (string, error) {
+func FormatString(generateRandomBuffer BytesGenerator, alphabet string, size int) (string, error) {
 	mask := 2<<uint32(31-bits.LeadingZeros32(uint32(len(alphabet)-1|1))) - 1
 	step := int(math.Ceil(1.6 * float64(mask*size) / float64(len(alphabet))))
 
@@ -54,38 +54,21 @@ func Format(generateRandomBuffer BytesGenerator, alphabet string, size int) (str
 	}
 }
 
-// Generate generates a random string based on alphabet
-// and size.
-func Generate(alphabet string, size int) (string, error) {
-	id, err := Format(generateRandomBuffer, alphabet, size)
+// GenerateString generates a random string based on
+// alphabet and size.
+func GenerateString(alphabet string, size int) (string, error) {
+	id, err := FormatString(generateRandomBuffer, alphabet, size)
 	if err != nil {
 		return "", err
 	}
 	return id, nil
 }
 
-// Must returns a random string if err is nil or panics
-// otherwise.
-func Must(id string, err error) string {
-	if err != nil {
-		panic(err)
-	}
-	return id
-}
-
-// MustFormat is like Format but panics if a random string
-// cannot be generated.
-func MustFormat(generateRandomBuffer BytesGenerator, alphabet string, size int) string {
-	return Must(Format(generateRandomBuffer, alphabet, size))
-}
-
-// MustGenerate is like Generate but panics if a random
-// string cannot be generated.
-func MustGenerate(alphabet string, size int) string {
-	return Must(Generate(alphabet, size))
-}
-
 // New generates a random string.
-func New() string {
-	return Must(Generate(alphabet, size))
+func New() (string, error) {
+	id, err := FormatString(generateRandomBuffer, alphabet, size)
+	if err != nil {
+		return "", err
+	}
+	return id, nil
 }
