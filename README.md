@@ -1,4 +1,4 @@
-# Nano ID [![GoDoc](https://godoc.org/github.com/aidarkhanov/nanoid?status.svg)](https://godoc.org/github.com/aidarkhanov/nanoid) [![License](https://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/aidarkhanov/nanoid/master/LICENSE)
+# Nano ID [![GoDoc](https://godoc.org/github.com/aidarkhanov/nanoid?status.svg)](https://godoc.org/github.com/aidarkhanov/nanoid)
 
 ### A tiny and fast _Go_ unique string generator
 
@@ -6,10 +6,7 @@
 * __Compact__. It uses a larger alphabet than UUID `(A-Za-z0-9_-)`. So ID size was reduced from 36 to 21 symbols.
 
 ```go
-id, err := nanoid.New() //> "i25_rX9zwDdDn7Sg-ZoaH"
-if err != nil {
-    log.Fatalln(err)
-}
+id := nanoid.New() //> "i25_rX9zwDdDn7Sg-ZoaH"
 ```
 
 ### Installation
@@ -19,6 +16,19 @@ Once Go is installed, run the following command to get Nano ID.
 ```sh
 go get github.com/aidarkhanov/nanoid
 ```
+
+### Documentation
+
+The package reference is located at [godoc.org/github.com/aidarkhanov/nanoid](https://godoc.org/github.com/aidarkhanov/nanoid).
+
+### Roadmap
+
+* Remove panic handling from the API.
+* Freeze the API in version 2 of the package.
+
+### License
+
+This package is provided under MIT/Expat license. See [LICENSE.md](https://raw.githubusercontent.com/aidarkhanov/nanoid/master/LICENSE) file for details.
 
 ### Thanks to
 
