@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/aidarkhanov/nanoid"
+	"github.com/aidarkhanov/nanoid/v2"
 )
 
 func TestGeneratesURLFriendlyIDs(t *testing.T) {

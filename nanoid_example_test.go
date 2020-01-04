@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/aidarkhanov/nanoid"
+	"github.com/aidarkhanov/nanoid/v2"
 )
 
 func ExampleFormatString() {
