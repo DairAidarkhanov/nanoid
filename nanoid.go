@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	alphabet = "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
+	alphabet = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
 	size     = 21
 )
 
