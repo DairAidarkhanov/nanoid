@@ -40,7 +40,7 @@ func FormatString(generateRandomBuffer BytesGenerator, alphabet string, size int
 			return "", err
 		}
 
-		for i := 0; i < step; i++ {
+		for i := step - 1; i >= 0; i-- {
 			currentIndex := int(randomBuffer[i]) & mask
 
 			if currentIndex < len(alphabet) {

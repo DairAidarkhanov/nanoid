@@ -116,7 +116,7 @@ func TestGeneratesRandomString(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	target := "cdac"
+	target := "adca"
 	if id != target {
 		t.Errorf("Expected %v, got %v", target, id)
 	}
