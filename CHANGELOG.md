@@ -1,8 +1,20 @@
 # Nano ID changelog
 
+## 2.0.4
+
+* Reduced docstrings to one-line.
+
+## 1.0.7
+
+* Reflected v2.0.4 changes.
+
 ## 2.0.3
 
 * Added the license file.
+
+## 1.0.6
+
+* Reflected v2.0.3 changes.
 
 ## 2.0.2
 
