@@ -1,4 +1,4 @@
-# Nano ID [![GoDoc](https://godoc.org/github.com/aidarkhanov/nanoid?status.svg)](https://godoc.org/github.com/aidarkhanov/nanoid)
+# Nano ID [![GoDoc](https://godoc.org/github.com/aidarkhanov/nanoid?status.svg)](https://pkg.go.dev/github.com/aidarkhanov/nanoid)
 
 ### A tiny and fast _Go_ unique string generator
 
@@ -22,7 +22,7 @@ go get github.com/aidarkhanov/nanoid
 
 ### Documentation
 
-The package reference is located at [godoc.org/github.com/aidarkhanov/nanoid](https://godoc.org/github.com/aidarkhanov/nanoid).
+The package reference is located at [pkg.go.dev/github.com/aidarkhanov/nanoid](https://pkg.go.dev/github.com/aidarkhanov/nanoid).
 
 ### Roadmap
 
