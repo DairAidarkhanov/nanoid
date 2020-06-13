@@ -1,5 +1,9 @@
 # Nano ID changelog
 
+## 2.0.3
+
+* Added the license file.
+
 ## 2.0.2
 
 * Moved the v2 module into its own namespace.
