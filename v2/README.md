@@ -1,4 +1,4 @@
-# Nano ID [![GoDoc](https://godoc.org/github.com/aidarkhanov/nanoid?status.svg)](https://pkg.go.dev/github.com/aidarkhanov/nanoid/v2)
+# Nano ID [![GoDoc](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-round)](https://pkg.go.dev/github.com/aidarkhanov/nanoid/v2)
 
 ### A tiny and fast _Go_ unique string generator
 
