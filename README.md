@@ -1,4 +1,4 @@
-# Nano ID [![GoDoc](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-round)](https://pkg.go.dev/github.com/aidarkhanov/nanoid)
+# Nano ID [![GoDoc](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-round)](https://pkg.go.dev/github.com/aidarkhanov/nanoid/v2)
 
 ### A tiny and fast _Go_ unique string generator
 
@@ -17,12 +17,12 @@ if err != nil {
 Once Go is installed, run the following command to get Nano ID.
 
 ```sh
-go get github.com/aidarkhanov/nanoid
+go get github.com/aidarkhanov/nanoid/v2
 ```
 
 ### Documentation
 
-The package reference is located at [pkg.go.dev/github.com/aidarkhanov/nanoid](https://pkg.go.dev/github.com/aidarkhanov/nanoid).
+The package reference is located at [pkg.go.dev/github.com/aidarkhanov/nanoid/v2](https://pkg.go.dev/github.com/aidarkhanov/nanoid/v2).
 
 ### Roadmap
 
