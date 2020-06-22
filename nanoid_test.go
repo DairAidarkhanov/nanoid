@@ -5,13 +5,19 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/aidarkhanov/nanoid"
+	"github.com/aidarkhanov/nanoid/v2"
 )
 
 func TestGeneratesURLFriendlyIDs(t *testing.T) {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
+	alphabet := nanoid.DefaultAlphabet
+	size := nanoid.DefaultSize
+
 	for i := 0; i < 100; i++ {
-		id := nanoid.New()
+		id, err := nanoid.GenerateString(alphabet, size)
+		if err != nil {
+			panic(err)
+		}
+
 		for j := 0; j < len(id); j++ {
 			if !strings.Contains(alphabet, string(id[j])) {
 				t.Errorf("ID does contain not URL-friendly char: %v", string(id[j]))
@@ -21,8 +27,14 @@ func TestGeneratesURLFriendlyIDs(t *testing.T) {
 }
 
 func TestChangesIDLength(t *testing.T) {
-	alphabet := "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
-	id := nanoid.MustGenerate(alphabet, 10)
+	alphabet := nanoid.DefaultAlphabet
+	size := 10
+
+	id, err := nanoid.GenerateString(alphabet, size)
+	if err != nil {
+		panic(err)
+	}
+
 	if len(id) != 10 {
 		t.Errorf("Expected ID length to be %v, got %v", 10, len(id))
 	}
@@ -32,30 +44,41 @@ func TestHasNoCollisions(t *testing.T) {
 	count := 100 * 1000
 	used := make(map[string]bool)
 	for i := 0; i < count; i++ {
-		id := nanoid.New()
+		id, err := nanoid.New()
+		if err != nil {
+			panic(err)
+		}
+
 		if v, ok := used[id]; ok {
 			t.Errorf("Repeated ID has been generated: %v", v)
 		}
+
 		used[id] = true
 	}
 }
 
 func TestHasFlatDistribution(t *testing.T) {
-	count := 100 * 1000
 	alphabet := "abcdefghijklmnopqrstuvwxyz"
 	size := 5
 
+	count := 100 * 1000
 	chars := make(map[string]int)
 	for i := 0; i < count; i++ {
-		id := nanoid.MustGenerate(alphabet, size)
+		id, err := nanoid.GenerateString(alphabet, size)
+		if err != nil {
+			panic(err)
+		}
+
 		for j := 0; j < len(id); j++ {
 			char := string(id[j])
 			if _, ok := chars[char]; !ok {
 				chars[char] = 0
 			}
+
 			chars[char]++
 		}
 	}
+
 	if len(chars) != len(alphabet) {
 		t.Error("Expected chars length to be equal to alphabet length")
 	}
@@ -71,6 +94,7 @@ func TestHasFlatDistribution(t *testing.T) {
 			min = distribution
 		}
 	}
+
 	distribution := max - min
 	if distribution >= 0.05 {
 		t.Errorf("Algorithm does not provide enough distribution: %v", distribution)
@@ -78,7 +102,11 @@ func TestHasFlatDistribution(t *testing.T) {
 }
 
 func TestHasOptions(t *testing.T) {
-	id := nanoid.MustGenerate("a", 5)
+	id, err := nanoid.GenerateString("a", 5)
+	if err != nil {
+		panic(err)
+	}
+
 	target := "aaaaa"
 	if id != target {
 		t.Errorf("Expected %v, got %v", target, id)
@@ -92,10 +120,15 @@ func TestGeneratesRandomString(t *testing.T) {
 		for i := 0; i < step; i += len(sequence) {
 			buffer = append(buffer, sequence[:step-i]...)
 		}
+
 		return buffer, nil
 	}
 
-	id := nanoid.MustFormat(generateBytesBuffer, "abcde", 4)
+	id, err := nanoid.FormatString(generateBytesBuffer, "abcde", 4)
+	if err != nil {
+		panic(err)
+	}
+
 	target := "cdac"
 	if id != target {
 		t.Errorf("Expected %v, got %v", target, id)
