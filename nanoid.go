@@ -9,8 +9,10 @@ import (
 )
 
 const (
-	alphabet = "-0123456789ABCDEFGHIJKLNQRTUVWXYZ_cfgijkpqtvxz"
-	size     = 21
+	// DefaultAlphabet is the default alphabet for Nano ID.
+	DefaultAlphabet = "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"
+	// DefaultSize is the default size for Nano ID.
+	DefaultSize = 21
 )
 
 // BytesGenerator represents random bytes buffer.
@@ -76,10 +78,10 @@ func MustFormat(generateRandomBuffer BytesGenerator, alphabet string, size int) 
 
 // MustGenerate is like Generate but panics if a random string cannot be generated.
 func MustGenerate(alphabet string, size int) string {
-	return Must(Generate(alphabet, size))
+	return Must(Generate(DefaultAlphabet, DefaultSize))
 }
 
 // New generates a random string.
 func New() string {
-	return Must(Generate(alphabet, size))
+	return Must(Generate(DefaultAlphabet, DefaultSize))
 }

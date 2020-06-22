@@ -8,8 +8,8 @@ import (
 )
 
 func ExampleFormat() {
-	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
-	size := 21
+	alphabet := nanoid.DefaultAlphabet
+	size := nanoid.DefaultSize
 
 	// generateBytesBuffer returns random bytes buffer
 	generateBytesBuffer := func(step int) ([]byte, error) {
@@ -17,6 +17,7 @@ func ExampleFormat() {
 		if _, err := rand.Read(buffer); err != nil {
 			return nil, err
 		}
+
 		return buffer, nil
 	}
 
@@ -29,8 +30,8 @@ func ExampleFormat() {
 }
 
 func ExampleGenerate() {
-	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
-	size := 21
+	alphabet := nanoid.DefaultAlphabet
+	size := nanoid.DefaultSize
 
 	id, err := nanoid.Generate(alphabet, size)
 	if err != nil {
@@ -41,8 +42,8 @@ func ExampleGenerate() {
 }
 
 func ExampleMustFormat() {
-	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
-	size := 21
+	alphabet := nanoid.DefaultAlphabet
+	size := nanoid.DefaultSize
 
 	// generateBytesBuffer returns random bytes buffer
 	generateBytesBuffer := func(step int) ([]byte, error) {
@@ -50,6 +51,7 @@ func ExampleMustFormat() {
 		if _, err := rand.Read(buffer); err != nil {
 			return nil, err
 		}
+
 		return buffer, nil
 	}
 
@@ -59,8 +61,8 @@ func ExampleMustFormat() {
 }
 
 func ExampleMustGenerate() {
-	alphabet := "-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW"
-	size := 21
+	alphabet := nanoid.DefaultAlphabet
+	size := nanoid.DefaultSize
 
 	id := nanoid.MustGenerate(alphabet, size)
 
