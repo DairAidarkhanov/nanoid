@@ -45,6 +45,7 @@ $RECYCLE.BIN/
 .eggs/
 .env
 .fuse_hidden*
+.github/
 .hypothesis/
 .installed.cfg
 .ipynb_checkpoints
